@@ -1,18 +1,21 @@
-package main;
+package example;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JFrame;
 import components.FloatParameterSlider;
 import components.PresetComponent;
 
+import main.MainWindow;
+
 @SuppressWarnings("serial")
-public class MainComponent extends JFrame
+public class MainComponent extends MainWindow
 {
-	public MainComponent(Main main) 
+	public MainComponent(Main main)
 	{
+		super(main);
+		
 		presetComponent = new PresetComponent(main.manager);
 		radiusSlider = new FloatParameterSlider(main.radius);
 		
@@ -30,9 +33,6 @@ public class MainComponent extends JFrame
 
 		constraints.gridy += 2;
 		add(radiusSlider, constraints);
-       
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300,600);
 	}
 	
 	private PresetComponent presetComponent;
