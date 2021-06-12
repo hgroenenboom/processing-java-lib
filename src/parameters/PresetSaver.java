@@ -15,7 +15,8 @@ public class PresetSaver
 		json.setString("presetName", presetName);
 		
 		JFileChooser fileChooser = new JFileChooser();
-		File presetDir = new File("data" + File.separator + "presets");		
+		File presetDir = new File("data" + File.separator + "presets");	
+		presetDir.mkdirs();
 		fileChooser.setCurrentDirectory(presetDir);
 		
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -34,6 +35,11 @@ public class PresetSaver
 		try 
 		{
 			File selected = fileChooser.getSelectedFile();
+			if(!selected.getAbsolutePath().endsWith("json"))
+			{
+				selected = new File(selected.getAbsolutePath() + ".json");
+			}
+			
 			selected.createNewFile();
 			FileWriter data = new FileWriter(selected);
 			data.write(json.toString());

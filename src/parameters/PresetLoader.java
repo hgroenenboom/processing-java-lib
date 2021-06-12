@@ -17,6 +17,7 @@ public class PresetLoader
 	{
 		JFileChooser fileChooser = new JFileChooser();
 		File presetDir = new File("data" + File.separator + "presets");
+		presetDir.mkdirs();
 		fileChooser.setCurrentDirectory(presetDir);
 		
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);

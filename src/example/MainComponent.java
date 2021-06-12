@@ -8,6 +8,7 @@ import components.FloatParameterSlider;
 import components.PresetComponent;
 
 import main.MainWindow;
+import parameters.FloatParameter;
 
 @SuppressWarnings("serial")
 public class MainComponent extends MainWindow
@@ -17,10 +18,8 @@ public class MainComponent extends MainWindow
 		super(main);
 		
 		presetComponent = new PresetComponent(main.manager);
-		radiusSlider = new FloatParameterSlider(main.radius);
-		
+
         setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
         final int padding = 3;
         constraints.insets = new Insets(padding, padding, padding, padding);
         constraints.fill = GridBagConstraints.HORIZONTAL;
@@ -31,11 +30,28 @@ public class MainComponent extends MainWindow
 		constraints.gridheight = 1;
 		add(presetComponent, constraints);
 
-		constraints.gridy += 2;
-		add(radiusSlider, constraints);
+		radiusSlider = addSlider(main.radius);
+		xPos = addSlider(main.xPos);
+		yPos = addSlider(main.yPos);
 	}
+	
+	private FloatParameterSlider addSlider(FloatParameter parameter)
+	{
+		constraints.gridx = 0;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.gridy += 2;
+		
+		FloatParameterSlider slider = new FloatParameterSlider(parameter);
+		add(slider, constraints);
+		
+		return slider;
+	}
+	
+	private GridBagConstraints constraints = new GridBagConstraints();
 	
 	private PresetComponent presetComponent;
 	
 	private FloatParameterSlider radiusSlider;
+	private FloatParameterSlider xPos, yPos;
 }
