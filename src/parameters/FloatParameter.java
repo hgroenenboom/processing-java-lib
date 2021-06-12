@@ -1,7 +1,6 @@
 package parameters;
 
-import java.util.ArrayList;
-
+import java.util.HashSet;
 import processing.core.*;
 import processing.data.JSONObject;
 
@@ -22,6 +21,8 @@ public class FloatParameter extends IParameter
   public void randomize()
   {
     value = ps.random(min, max);
+    
+    updateListeners();
   }
   
   public void save(JSONObject json)
@@ -58,10 +59,7 @@ public class FloatParameter extends IParameter
   {
     value = Math.min(max, Math.max(min, newValue));
     
-    for(FloatParameterListener listener : listeners)
-    {
-    	listener.onValueChanged(value);
-    }
+    updateListeners();
   }
   
   public void addListener(FloatParameterListener newListener)
@@ -74,12 +72,21 @@ public class FloatParameter extends IParameter
 	  listeners.remove(listenerToRemove);
   }
   
+  private void updateListeners()
+  {
+      for(FloatParameterListener listener : listeners)
+      {
+    	  listener.onValueChanged(value);
+      }
+  }
+  
+  // TODO: should be private
   public float min;
   public float max;
   
   private float value;
   
-  private ArrayList<FloatParameterListener> listeners = new ArrayList<FloatParameterListener>();
+  private HashSet<FloatParameterListener> listeners = new HashSet<FloatParameterListener>();
   
   private static PApplet ps = new PApplet();
 }

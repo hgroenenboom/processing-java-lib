@@ -1,24 +1,23 @@
 package components;
 
-import javax.swing.JSlider;
+import java.util.Objects;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import parameters.FloatParameter;
 import parameters.FloatParameterListener;
 
-public class FloatParameterSlider extends JSlider implements FloatParameterListener, ChangeListener
+public class FloatParameterSlider extends LabelSlider implements FloatParameterListener, ChangeListener
 {
 	public FloatParameterSlider(FloatParameter parameter)
 	{
-		assert parameter != null;
+		super(Objects.requireNonNull(parameter).id, parameter.min, parameter.max);
 		
 		m_parameter = parameter;
+		parameter.addListener(this);
 		
-		setMinimum((int)Math.ceil(parameter.min * 1000.0f));
-		setMaximum((int)(parameter.max * 1000.0f));
-		
-        addChangeListener(this);
+        slider.addChangeListener(this);
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class FloatParameterSlider extends JSlider implements FloatParameterListe
 		}
 		else
 		{
-			setValue((int)(1000.0f * newValue));
+			slider.setValue((int)(1000.0f * newValue));
 		}
 	}
 	
@@ -39,8 +38,7 @@ public class FloatParameterSlider extends JSlider implements FloatParameterListe
 	{
 		updatedFromGUI = true;
 		
-		float newValue = 0.001f * getValue();
-		m_parameter.set(newValue);
+		m_parameter.set(0.001f * slider.getValue());
 	}
 	
 	final FloatParameter parameter() { return m_parameter; }

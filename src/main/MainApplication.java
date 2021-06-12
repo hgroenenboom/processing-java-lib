@@ -12,7 +12,7 @@ public abstract class MainApplication extends PApplet
 	
 	public static void main(String args[]) 
 	{
-		PApplet.main(new String[] {"--present", "example.Main"});
+		PApplet.main(new String[] {"--present", "example.ExampleApplication"});
 	}
 	
 	@Override
@@ -21,7 +21,6 @@ public abstract class MainApplication extends PApplet
 		assert mainComponent != null : "You have to specify explicitly create a MainWindow object in your constructor";
 		mainComponent.setVisible(true);
 	}
-	
 	
 	public ParameterManager manager = new ParameterManager();
 	
