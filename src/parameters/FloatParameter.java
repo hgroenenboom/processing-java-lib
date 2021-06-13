@@ -1,7 +1,6 @@
 package parameters;
 
 import java.util.HashSet;
-import processing.core.*;
 import processing.data.JSONObject;
 
 public class FloatParameter extends IParameter 
@@ -20,7 +19,7 @@ public class FloatParameter extends IParameter
   
   public void randomize()
   {
-    value = ps.random(min, max);
+    value = min + (max - min) * (float) Math.random();
     
     updateListeners();
   }
@@ -87,6 +86,4 @@ public class FloatParameter extends IParameter
   private float value;
   
   private HashSet<FloatParameterListener> listeners = new HashSet<FloatParameterListener>();
-  
-  private static PApplet ps = new PApplet();
 }

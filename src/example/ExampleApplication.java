@@ -1,7 +1,10 @@
 package example;
 
+import data.RandomSequence;
+import dsp.OnePole;
 import main.MainApplication;
 import main.MainWindow;
+
 import parameters.FloatParameter;
 
 public class ExampleApplication extends MainApplication 
@@ -22,6 +25,9 @@ public class ExampleApplication extends MainApplication
 	public void settings()
 	{
 		fullScreen();
+		
+		onePole.a1 = - 0.9f;
+		onePole.b0 = 0.1f;
 	}
 	
 	@Override
@@ -31,7 +37,10 @@ public class ExampleApplication extends MainApplication
 		final float halfWidth = width / 2.0f;
 		final float halfHeight = height / 2.0f;
 		
-		final float _radius = radius.get();
+		if(counter % 20 == 0) { r = sequenceOne.nextFloat(-1.0f,  1.0f); }
+		final float filtered = onePole.setAndGet(r);
+		
+		final float _diameter = radius.get();
 		
 		final float randomVariationInPixels = 50.0f * randomVariation.get();
 		
@@ -40,9 +49,15 @@ public class ExampleApplication extends MainApplication
 			float randX = ( 2.0f * (float)Math.random() - 1.0f ) * randomVariationInPixels;
 			float randY = ( 2.0f * (float)Math.random() - 1.0f ) * randomVariationInPixels;
 			
-			ellipse(xPos.get() + randX, yPos.get() + randY, _radius, _radius);
+			ellipse(xPos.get() + randX + filtered * 1000.0f, yPos.get() + randY, _diameter, _diameter);
 		}
+		
+		counter++;
 	}
+	
+	RandomSequence sequenceOne = new RandomSequence(0, 5);
+	OnePole onePole = new OnePole(0.0f);
+	float r;
 	
 	public int counter = 0;
 	
