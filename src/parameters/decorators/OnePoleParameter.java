@@ -10,7 +10,7 @@ public class OnePoleParameter<T extends Number> extends FloatParameter
 {
 	public OnePoleParameter(Parameter<T> parameterToSmooth)
 	{
-		super(Objects.requireNonNull(parameterToSmooth.id) + "-onepole", Objects.requireNonNull(parameterToSmooth.manager), -0.9999999f, 0.9999999f);
+		super(Objects.requireNonNull(parameterToSmooth.id) + "-onepole", Objects.requireNonNull(parameterToSmooth.manager), 0.0f, 0.5f);
 		
 		this.parameterToSmooth = parameterToSmooth;
 		
@@ -29,8 +29,7 @@ public class OnePoleParameter<T extends Number> extends FloatParameter
 		super.set(newValue);
 
 		final float clampedValue = super.get();
-		onePole.a1 = clampedValue;
-		onePole.b0 = 1.0f - Math.abs(clampedValue);
+		onePole.setLowpass(clampedValue);
 	}
 	
 	public OnePole onePole = new OnePole(0.0f);

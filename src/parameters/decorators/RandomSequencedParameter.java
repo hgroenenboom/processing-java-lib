@@ -16,9 +16,9 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	{
 		super(Objects.requireNonNull(parameter).id + "-randomsequenced", parameter.manager);
 		
-		onePoleParameter = new FloatParameter(id + "-onepole", manager, -0.999999999f, 0.999999999999f);
+		onePoleParameter = new FloatParameter(id + "-onepole", manager, 0.0f, 0.5f);
 		onePoleParameter.addListener(this);
-		onePoleParameter.set(-1.0f + 1.0f / 5.0f);
+		onePoleParameter.set(1.0f / 5.0f);
 		
 		rate = new FloatParameter(id + "-rate", manager, 0.0f, 1.0f);
 		
@@ -75,9 +75,11 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	@Override
 	public void onValueChanged(Parameter<Float> source, Float newValue)
 	{
-		// Update OnePole parameters if the Parameter has changed
-		onePole.a1 = newValue;
-		onePole.b0 = 1.0f - Math.abs(newValue);
+		if(source == onePoleParameter)
+		{
+			// Update OnePole parameters if the Parameter has changed
+			onePole.setLowpass(newValue);
+		}
 	}
 
 	private OnePole onePole = new OnePole(0.0f);
