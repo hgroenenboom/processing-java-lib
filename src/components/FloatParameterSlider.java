@@ -6,6 +6,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import parameters.FloatParameter;
+import parameters.Parameter;
 import parameters.ParameterListener;
 
 public class FloatParameterSlider extends LabelSlider implements ParameterListener<Float>, ChangeListener
@@ -21,7 +22,7 @@ public class FloatParameterSlider extends LabelSlider implements ParameterListen
 	}
 
 	@Override
-	public void onValueChanged(Float newValue) 
+	public void onValueChanged(Parameter<Float> source, Float newValue) 
 	{
 		// NOTE: this prevents the feedback loop where updating the slider, updates the FloatParameter again
 		if(updatedFromGUI)

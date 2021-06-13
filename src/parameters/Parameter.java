@@ -39,7 +39,7 @@ public abstract class Parameter<T>
 	{
 		for (ParameterListener<T> listener : listeners)
 		{
-			listener.onValueChanged(newValue);
+			listener.onValueChanged(this, newValue);
 		}
 	}
 

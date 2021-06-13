@@ -67,7 +67,7 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	}
 	
 	@Override
-	public void onValueChanged(Float newValue)
+	public void onValueChanged(Parameter<Float> source, Float newValue)
 	{
 		// Update OnePole parameters if the Parameter has changed
 		onePole.a1 = newValue;

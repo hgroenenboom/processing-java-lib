@@ -2,5 +2,5 @@ package parameters;
 
 public interface ParameterListener<T> 
 {
-	abstract void onValueChanged(T newValue);
+	abstract void onValueChanged(Parameter<T> source, T newValue);
 }
