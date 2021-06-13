@@ -1,7 +1,6 @@
 package parameters.decorators;
 
 import java.util.Objects;
-
 import dsp.OnePole;
 
 import parameters.FloatParameter;
@@ -11,7 +10,7 @@ public class OnePoleParameter<T> extends FloatParameter
 {
 	public OnePoleParameter(IParameter<T> parameter)
 	{
-		super(Objects.requireNonNull(parameter).id + "a1parameter", parameter.manager, -0.9999999f, 0.9999999f);
+		super(Objects.requireNonNull(parameter).id + "-onepole-a1parameter", parameter.manager, -0.9999999f, 0.9999999f);
 		set(-1.0f + 1.0f / 20.0f);
 
 		child = parameter;
