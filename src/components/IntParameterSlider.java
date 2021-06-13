@@ -5,14 +5,14 @@ import java.util.Objects;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import parameters.FloatParameter;
+import parameters.IntParameter;
 import parameters.ParameterListener;
 
-public class FloatParameterSlider extends LabelSlider implements ParameterListener<Float>, ChangeListener
+public class IntParameterSlider extends LabelSlider implements ParameterListener<Integer>, ChangeListener
 {
-	public FloatParameterSlider(FloatParameter parameter)
+	public IntParameterSlider(IntParameter parameter)
 	{
-		super(Objects.requireNonNull(parameter).id, (int)(1000.0f * parameter.getMin()), (int)(1000.0f * parameter.getMax()));
+		super(Objects.requireNonNull(parameter).id, parameter.getMin(), parameter.getMax());
 		
 		m_parameter = parameter;
 		parameter.addListener(this);
@@ -21,7 +21,7 @@ public class FloatParameterSlider extends LabelSlider implements ParameterListen
 	}
 
 	@Override
-	public void onValueChanged(Float newValue) 
+	public void onValueChanged(Integer newValue) 
 	{
 		// NOTE: this prevents the feedback loop where updating the slider, updates the FloatParameter again
 		if(updatedFromGUI)
@@ -30,7 +30,7 @@ public class FloatParameterSlider extends LabelSlider implements ParameterListen
 		}
 		else
 		{
-			slider.setValue((int)(1000.0f * newValue));
+			slider.setValue(newValue);
 		}
 	}
 	
@@ -39,12 +39,12 @@ public class FloatParameterSlider extends LabelSlider implements ParameterListen
 	{
 		updatedFromGUI = true;
 		
-		m_parameter.set(0.001f * slider.getValue());
+		m_parameter.set(slider.getValue());
 	}
 	
-	final FloatParameter parameter() { return m_parameter; }
+	final IntParameter parameter() { return m_parameter; }
 
-	private FloatParameter m_parameter;
+	private IntParameter m_parameter;
 	
 	private boolean updatedFromGUI = false;
 	
