@@ -7,7 +7,7 @@ import processing.data.JSONObject;
 @SuppressWarnings("rawtypes")
 public class ParameterManager 
 {
-  public void add(IParameter parameterToAdd)
+  public void add(Parameter parameterToAdd)
   {
     assert !parameters.containsKey(parameterToAdd.id) : "A parameter with the same ID has already been added.";
     
@@ -18,7 +18,7 @@ public class ParameterManager
   {
     JSONObject json = new JSONObject();
     
-    for (IParameter parameter : parameters.values())
+    for (Parameter parameter : parameters.values())
     {
       parameter.save(json);
     }
@@ -34,7 +34,7 @@ public class ParameterManager
       return;
     }
     
-    for (IParameter parameter : parameters.values())
+    for (Parameter parameter : parameters.values())
     {
       parameter.load(json);
     }
@@ -42,11 +42,11 @@ public class ParameterManager
   
   public void randomize()
   {
-    for(IParameter parameter : parameters.values())
+    for(Parameter parameter : parameters.values())
     {
       parameter.randomize();
     }
   }
   
-  private HashMap<String, IParameter> parameters = new HashMap<String, IParameter>();
+  private HashMap<String, Parameter> parameters = new HashMap<String, Parameter>();
 }

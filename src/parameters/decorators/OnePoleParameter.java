@@ -4,21 +4,23 @@ import java.util.Objects;
 import dsp.OnePole;
 
 import parameters.FloatParameter;
-import parameters.IParameter;
-import parameters.ParameterManager;
+import parameters.Parameter;
 
-public class OnePoleParameter extends FloatParameter
+public class OnePoleParameter<T extends Number> extends FloatParameter
 {
-	public OnePoleParameter(String id, ParameterManager manager)
+	public OnePoleParameter(Parameter<T> parameterToSmooth)
 	{
-		super(Objects.requireNonNull(id) + "-onepole-a1parameter", Objects.requireNonNull(manager), -0.9999999f, 0.9999999f);
+		super(Objects.requireNonNull(parameterToSmooth.id) + "-onepole", Objects.requireNonNull(parameterToSmooth.manager), -0.9999999f, 0.9999999f);
+		
+		this.parameterToSmooth = parameterToSmooth;
+		
 		set(-1.0f + 1.0f / 20.0f);
 	}
 
 	@Override
 	public Float get()
 	{
-		return onePole.get();
+		return onePole.filter(parameterToSmooth.get().floatValue());
 	}
 
 	@Override
@@ -30,6 +32,8 @@ public class OnePoleParameter extends FloatParameter
 		onePole.a1 = clampedValue;
 		onePole.b0 = 1.0f - Math.abs(clampedValue);
 	}
-
+	
 	public OnePole onePole = new OnePole(0.0f);
+	
+	Parameter<T> parameterToSmooth;
 }

@@ -2,7 +2,7 @@ package parameters;
 
 import processing.data.JSONObject;
 
-public class IntParameter extends IParameter<Integer>
+public class IntParameter extends Parameter<Integer>
 {
 	public IntParameter(String id, ParameterManager manager, int min, int max)
 	{

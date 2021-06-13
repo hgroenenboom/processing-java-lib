@@ -5,9 +5,9 @@ import java.util.Objects;
 
 import processing.data.JSONObject;
 
-public abstract class IParameter<T>
+public abstract class Parameter<T>
 {
-	public IParameter(String id, ParameterManager manager)
+	public Parameter(String id, ParameterManager manager)
 	{
 		this.id = Objects.requireNonNull(id);
 		this.manager = Objects.requireNonNull(manager);

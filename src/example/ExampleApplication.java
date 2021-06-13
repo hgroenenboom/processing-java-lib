@@ -1,11 +1,10 @@
 package example;
 
-import data.RandomSequence;
-import dsp.OnePole;
 import main.MainApplication;
 import main.MainWindow;
 
 import parameters.FloatParameter;
+import parameters.decorators.OnePoleParameter;
 import parameters.decorators.RandomSequencedParameter;
 
 public class ExampleApplication extends MainApplication 
@@ -34,10 +33,12 @@ public class ExampleApplication extends MainApplication
 	@SuppressWarnings("unused")
 	public void draw()
 	{		
+		rect(0.0f,  0.0f, width,  height);
+		
 		final float halfWidth = width / 2.0f;
 		final float halfHeight = height / 2.0f;
 		
-		final float _diameter = radius.get();
+		final float _diameter = radiusSmooth.get();
 		
 		final float randomVariationInPixels = 50.0f * randomVariation.get();
 		
@@ -54,8 +55,11 @@ public class ExampleApplication extends MainApplication
 	}
 	
 	public FloatParameter radius = new FloatParameter("radius", manager, 20.0f, 500.0f);
+	public OnePoleParameter<Float> radiusSmooth = new OnePoleParameter<Float>(radius);
+	
 	public FloatParameter xPos, yPos;
 	public RandomSequencedParameter xPosSequence, yPosSequence;
+	
 	public FloatParameter randomVariation = new FloatParameter("randomVariation", manager, 0.0f, 1.0f);
 	public FloatParameter numBalls = new FloatParameter("numBalls", manager, 0.0f, 15.0f);
 }

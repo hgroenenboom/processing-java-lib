@@ -6,9 +6,10 @@ import java.awt.Insets;
 
 import components.FloatParameterSlider;
 import components.PresetComponent;
-
+import components.RandomSequencedParameterComponent;
 import main.MainWindow;
 import parameters.FloatParameter;
+import parameters.decorators.RandomSequencedParameter;
 
 @SuppressWarnings("serial")
 public class ExampleComponent extends MainWindow
@@ -31,13 +32,16 @@ public class ExampleComponent extends MainWindow
 		add(presetComponent, constraints);
 
 		addSlider(model.radius);
-		addSlider(model.xPos);
+		addSlider(model.radiusSmooth);
 		addSlider(model.yPos);
 		addSlider(model.numBalls);
 		addSlider(model.randomVariation);
+		
+		addRandomSequencedParameterComponent(model.xPosSequence);
+		addRandomSequencedParameterComponent(model.yPosSequence);
 	}
 	
-	private FloatParameterSlider addSlider(FloatParameter parameter)
+	private void addSlider(FloatParameter parameter)
 	{
 		constraints.gridx = 0;
 		constraints.gridwidth = 1;
@@ -46,8 +50,16 @@ public class ExampleComponent extends MainWindow
 		
 		FloatParameterSlider slider = new FloatParameterSlider(parameter);
 		add(slider, constraints);
+	}
+	
+	private void addRandomSequencedParameterComponent(RandomSequencedParameter randomSequencedParameter)
+	{
+		constraints.gridx = 0;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 2;
+		constraints.gridy += 2;
 		
-		return slider;
+		add(new RandomSequencedParameterComponent(randomSequencedParameter), constraints);
 	}
 	
 	private GridBagConstraints constraints = new GridBagConstraints();

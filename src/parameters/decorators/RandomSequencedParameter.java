@@ -6,18 +6,19 @@ import java.util.Random;
 import data.RandomSequence;
 import dsp.OnePole;
 import parameters.FloatParameter;
-import parameters.IParameter;
+import parameters.Parameter;
+import parameters.ParameterListener;
 import processing.data.JSONObject;
 
-public class RandomSequencedParameter extends IParameter<Float>
+public class RandomSequencedParameter extends Parameter<Float> implements ParameterListener<Float>
 {
 	public RandomSequencedParameter(FloatParameter parameter)
 	{
 		super(Objects.requireNonNull(parameter).id + "-randomsequenced", parameter.manager);
-
-		onePole = new OnePoleParameter(this.id, manager);
 		
-		onePole.set(-1.0f + 1.0f / 5.0f);
+		onePoleParameter = new FloatParameter(id + "-onepole", manager, -0.999999999f, 0.999999999999f);
+		onePoleParameter.addListener(this);
+		onePoleParameter.set(-1.0f + 1.0f / 5.0f);
 		
 		child = parameter;
 	}
@@ -55,15 +56,26 @@ public class RandomSequencedParameter extends IParameter<Float>
 			out = sequence.nextFloat(child.getMin(), child.getMax());
 		}
 
-		return onePole.onePole.filter(out);
+		return onePole.filter(out);
 	}
 
 	@Override
 	public void set(Float newData)
 	{
+		// Not sure what we want here
+		// out = newData;
+	}
+	
+	@Override
+	public void onValueChanged(Float newValue)
+	{
+		// Update OnePole parameters if the Parameter has changed
+		onePole.a1 = newValue;
+		onePole.b0 = 1.0f - Math.abs(newValue);
 	}
 
-	public OnePoleParameter onePole;
+	private OnePole onePole = new OnePole(0.0f);
+	public FloatParameter onePoleParameter;
 	
 	final int randomSequenceLength = 3;
 	public RandomSequence sequence = new RandomSequence(new Random().nextLong(), randomSequenceLength);

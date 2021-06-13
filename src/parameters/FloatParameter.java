@@ -2,7 +2,7 @@ package parameters;
 
 import processing.data.JSONObject;
 
-public class FloatParameter extends IParameter<Float>
+public class FloatParameter extends Parameter<Float>
 {
 	public FloatParameter(String id, ParameterManager manager, float min, float max)
 	{
