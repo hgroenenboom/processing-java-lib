@@ -1,6 +1,5 @@
 package parameters;
 
-import java.util.HashSet;
 import processing.data.JSONObject;
 
 public class FloatParameter extends IParameter<Float>
@@ -56,25 +55,7 @@ public class FloatParameter extends IParameter<Float>
 	{
 		value = Math.min(max, Math.max(min, newValue));
 
-		updateListeners();
-	}
-
-	public void addListener(FloatParameterListener newListener)
-	{
-		listeners.add(newListener);
-	}
-
-	public void removeListener(FloatParameterListener listenerToRemove)
-	{
-		listeners.remove(listenerToRemove);
-	}
-
-	private void updateListeners()
-	{
-		for (FloatParameterListener listener : listeners)
-		{
-			listener.onValueChanged(value);
-		}
+		updateListeners(value);
 	}
 
 	public float getMin()
@@ -91,6 +72,4 @@ public class FloatParameter extends IParameter<Float>
 	private float max;
 
 	private float value;
-
-	private HashSet<FloatParameterListener> listeners = new HashSet<FloatParameterListener>();
 }
