@@ -1,6 +1,7 @@
 package example;
 
 import main.MainApplication;
+import main.MainWindow;
 import parameters.FloatParameter;
 
 public class ExampleApplication extends MainApplication 
@@ -8,9 +9,13 @@ public class ExampleApplication extends MainApplication
 	public ExampleApplication()
 	{
 		xPos = new FloatParameter("xPos", manager, 0.0f, 1920);
-		yPos = new FloatParameter("yPos", manager, 0.0f, 1080);
-		
-		mainComponent = new ExampleComponent(this);
+		yPos = new FloatParameter("yPos", manager, 0.0f, 1080);	
+	}
+	
+	@Override
+	public MainWindow createMainWindow() 
+	{
+		return new ExampleComponent(this);
 	}
 	
 	@Override
