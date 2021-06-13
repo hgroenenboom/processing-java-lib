@@ -57,7 +57,7 @@ public class ExampleComponent extends MainWindow
 		constraints.gridx = 0;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 2;
-		constraints.gridy += 2;
+		constraints.gridy += 4;
 		
 		add(new RandomSequencedParameterComponent(randomSequencedParameter), constraints);
 	}

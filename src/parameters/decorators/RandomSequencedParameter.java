@@ -20,6 +20,8 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 		onePoleParameter.addListener(this);
 		onePoleParameter.set(-1.0f + 1.0f / 5.0f);
 		
+		rate = new FloatParameter(id + "-rate", manager, 0.0f, 1.0f);
+		
 		child = parameter;
 	}
 
@@ -49,12 +51,16 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	@Override
 	public Float get()
 	{
-		final int rate = 10 + 5 * Math.abs(new Random().nextInt() % 2);
-
-		if (counter++ % rate == 0)
+		final float maxFreq = 10.0f;
+		// frequency: 0 - 40
+		final float period = maxFreq / ( 0.00000001f + 0.1f * maxFreq * rate.get() );
+		
+		if(counter > period)
 		{
 			out = sequence.nextFloat(child.getMin(), child.getMax());
+			counter -= period;
 		}
+		counter += 1.0f;
 
 		return onePole.filter(out);
 	}
@@ -77,11 +83,13 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	private OnePole onePole = new OnePole(0.0f);
 	public FloatParameter onePoleParameter;
 	
+	public FloatParameter rate;
+	
 	final int randomSequenceLength = 3;
 	public RandomSequence sequence = new RandomSequence(new Random().nextLong(), randomSequenceLength);
 
 	float out = 0.0f;
-	int counter = 0;
+	float counter = 0;
 
 	public final FloatParameter child;
 }
