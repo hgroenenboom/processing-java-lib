@@ -5,21 +5,20 @@ import dsp.OnePole;
 
 import parameters.FloatParameter;
 import parameters.IParameter;
+import parameters.ParameterManager;
 
-public class OnePoleParameter<T> extends FloatParameter
+public class OnePoleParameter extends FloatParameter
 {
-	public OnePoleParameter(IParameter<T> parameter)
+	public OnePoleParameter(String id, ParameterManager manager)
 	{
-		super(Objects.requireNonNull(parameter).id + "-onepole-a1parameter", parameter.manager, -0.9999999f, 0.9999999f);
+		super(Objects.requireNonNull(id) + "-onepole-a1parameter", Objects.requireNonNull(manager), -0.9999999f, 0.9999999f);
 		set(-1.0f + 1.0f / 20.0f);
-
-		child = parameter;
 	}
 
 	@Override
 	public Float get()
 	{
-		return onePole.filter((float) child.get());
+		return onePole.get();
 	}
 
 	@Override
@@ -30,11 +29,7 @@ public class OnePoleParameter<T> extends FloatParameter
 		final float clampedValue = super.get();
 		onePole.a1 = clampedValue;
 		onePole.b0 = 1.0f - Math.abs(clampedValue);
-		System.out.println(onePole.a1);
-		System.out.println(onePole.b0);
 	}
 
 	public OnePole onePole = new OnePole(0.0f);
-
-	public final IParameter<T> child;
 }

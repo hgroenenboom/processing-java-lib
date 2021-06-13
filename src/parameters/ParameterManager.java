@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import processing.data.JSONObject;
 
+@SuppressWarnings("rawtypes")
 public class ParameterManager 
 {
   public void add(IParameter parameterToAdd)

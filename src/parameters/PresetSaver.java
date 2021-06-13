@@ -10,10 +10,8 @@ import processing.data.JSONObject;
 
 public class PresetSaver 
 {
-	public static void save(JSONObject json, String presetName)
-	{
-		json.setString("presetName", presetName);
-		
+	public static void save(JSONObject json)
+	{	
 		JFileChooser fileChooser = new JFileChooser();
 		File presetDir = new File("data" + File.separator + "presets");	
 		presetDir.mkdirs();
@@ -23,7 +21,7 @@ public class PresetSaver
 		fileChooser.setApproveButtonText("save");
 		fileChooser.setDialogTitle("Save new preset");
 		fileChooser.setFileFilter(new PresetFileFilter());
-		fileChooser.setSelectedFile(new File(presetDir + File.separator + presetName + ".json"));
+		fileChooser.setSelectedFile(new File(presetDir + File.separator + "preset.json"));
 
 		int result = fileChooser.showOpenDialog(null);
 		
@@ -39,6 +37,9 @@ public class PresetSaver
 			{
 				selected = new File(selected.getAbsolutePath() + ".json");
 			}
+			
+			String filename = selected.getName().replace(".json", "");
+			json.setString("presetName", filename);
 			
 			selected.createNewFile();
 			FileWriter data = new FileWriter(selected);

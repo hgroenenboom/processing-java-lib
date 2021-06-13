@@ -15,9 +15,10 @@ public class RandomSequencedParameter extends IParameter<Float>
 	{
 		super(Objects.requireNonNull(parameter).id + "-randomsequenced", parameter.manager);
 
-		onePole.a1 = -1.0f + 1.0f / 5.0f;
-		onePole.b0 = 1.0f - Math.abs(onePole.a1);
-
+		onePole = new OnePoleParameter(this.id, manager);
+		
+		onePole.set(-1.0f + 1.0f / 5.0f);
+		
 		child = parameter;
 	}
 
@@ -29,11 +30,19 @@ public class RandomSequencedParameter extends IParameter<Float>
 	@Override
 	public void save(JSONObject json)
 	{
+		JSONObject child = new JSONObject();
+		
+		json.setJSONObject(id, child);
 	}
 
 	@Override
 	public void load(JSONObject json)
 	{
+		JSONObject child = json.getJSONObject(id);
+		if(child == null)
+		{
+			return;
+		}
 	}
 
 	@Override
@@ -46,7 +55,7 @@ public class RandomSequencedParameter extends IParameter<Float>
 			out = sequence.nextFloat(child.getMin(), child.getMax());
 		}
 
-		return onePole.filter(out);
+		return onePole.onePole.filter(out);
 	}
 
 	@Override
@@ -54,7 +63,7 @@ public class RandomSequencedParameter extends IParameter<Float>
 	{
 	}
 
-	public OnePole onePole = new OnePole(0.0f);
+	public OnePoleParameter onePole;
 	
 	final int randomSequenceLength = 3;
 	public RandomSequence sequence = new RandomSequence(new Random().nextLong(), randomSequenceLength);

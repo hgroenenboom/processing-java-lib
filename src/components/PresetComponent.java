@@ -45,7 +45,7 @@ public class PresetComponent extends JPanel implements ActionListener
 		{
 			JSONObject json = new JSONObject();
 			manager.save(json);
-			PresetSaver.save(json, "preset");
+			PresetSaver.save(json);
 		}
 		else if (loadButton == source)
 		{
