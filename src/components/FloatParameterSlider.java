@@ -12,7 +12,7 @@ public class FloatParameterSlider extends LabelSlider implements FloatParameterL
 {
 	public FloatParameterSlider(FloatParameter parameter)
 	{
-		super(Objects.requireNonNull(parameter).id, parameter.min, parameter.max);
+		super(Objects.requireNonNull(parameter).id, parameter.getMin(), parameter.getMax());
 		
 		m_parameter = parameter;
 		parameter.addListener(this);

@@ -7,7 +7,7 @@ public class OnePole
 	output = initValue;
   }
 
-  public void set(float input)
+  public void tick(float input)
   {
 	  output = b0 * input - a1 * output;
   }
@@ -17,9 +17,9 @@ public class OnePole
     return output;
   }
 
-  public float setAndGet(float input) 
+  public float filter(float input) 
   {
-    set(input);
+    tick(input);
     
     return output;
   }
