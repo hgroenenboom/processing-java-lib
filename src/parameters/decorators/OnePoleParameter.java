@@ -3,7 +3,6 @@ package parameters.decorators;
 import java.util.Objects;
 
 import dsp.OnePole;
-
 import parameters.FloatParameter;
 import parameters.Parameter;
 

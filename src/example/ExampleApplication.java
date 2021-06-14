@@ -7,7 +7,7 @@ import parameters.FloatParameter;
 import parameters.decorators.OnePoleParameter;
 import parameters.decorators.RandomSequencedParameter;
 
-public class ExampleApplication extends MainApplication 
+public class ExampleApplication extends MainApplication
 {
 	public ExampleApplication()
 	{
@@ -16,50 +16,50 @@ public class ExampleApplication extends MainApplication
 		xPosSequence = new RandomSequencedParameter(xPos);
 		yPosSequence = new RandomSequencedParameter(yPos);
 	}
-	
+
 	@Override
-	public MainWindow createMainWindow() 
+	public MainWindow createMainWindow()
 	{
 		return new ExampleComponent(this);
 	}
-	
+
 	@Override
 	public void settings()
 	{
 		fullScreen();
 	}
-	
+
 	@Override
 	@SuppressWarnings("unused")
 	public void draw()
-	{		
-		rect(0.0f,  0.0f, width,  height);
-		
+	{
+		rect(0.0f, 0.0f, width, height);
+
 		final float halfWidth = width / 2.0f;
 		final float halfHeight = height / 2.0f;
-		
+
 		final float _diameter = radiusSmooth.get();
-		
+
 		final float randomVariationInPixels = 50.0f * randomVariation.get();
-		
+
 		final float _xPos = xPosSequence.get();
 		final float _yPos = yPosSequence.get();
-		
-		for(int i = 0; i < numBalls.get().intValue(); i++)
+
+		for (int i = 0; i < numBalls.get().intValue(); i++)
 		{
-			float randX = ( 2.0f * (float)Math.random() - 1.0f ) * randomVariationInPixels;
-			float randY = ( 2.0f * (float)Math.random() - 1.0f ) * randomVariationInPixels;
-			
+			float randX = (2.0f * (float) Math.random() - 1.0f) * randomVariationInPixels;
+			float randY = (2.0f * (float) Math.random() - 1.0f) * randomVariationInPixels;
+
 			ellipse(_xPos + randX, _yPos + randY, _diameter, _diameter);
 		}
 	}
-	
+
 	public FloatParameter radius = new FloatParameter("radius", manager, 20.0f, 500.0f);
 	public OnePoleParameter<Float> radiusSmooth = new OnePoleParameter<Float>(radius);
-	
+
 	public FloatParameter xPos, yPos;
 	public RandomSequencedParameter xPosSequence, yPosSequence;
-	
+
 	public FloatParameter randomVariation = new FloatParameter("randomVariation", manager, 0.0f, 1.0f);
 	public FloatParameter numBalls = new FloatParameter("numBalls", manager, 0.0f, 15.0f);
 }
