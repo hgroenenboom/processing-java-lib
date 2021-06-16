@@ -1,0 +1,101 @@
+{
+  "presetName": "travelling-dots",
+  "parameters": {
+    "radius-onepole-frequency": {
+      "min": 0,
+      "max": 1,
+      "value": 0.5860000252723694
+    },
+    "background-color": {
+      "r": {
+        "min": 0,
+        "max": 1,
+        "value": 0.02500000037252903
+      },
+      "b": {
+        "min": 0,
+        "max": 1,
+        "value": 0.07100000232458115
+      },
+      "g": {
+        "min": 0,
+        "max": 1,
+        "value": 0.2510000169277191
+      },
+      "alpha": {
+        "min": 0,
+        "max": 1,
+        "value": 0.8360000252723694
+      }
+    },
+    "xPos-randomsequenced": {
+      "smoothed-onepole-frequency": {
+        "min": 0,
+        "max": 0.5,
+        "value": 0.013000000268220901
+      },
+      "seed": {
+        "min": 0,
+        "max": 200,
+        "value": 135
+      },
+      "length-normalized": {
+        "min": 0,
+        "max": 1,
+        "value": 0.9620000720024109
+      },
+      "rate-normalized": {
+        "min": 0,
+        "max": 1,
+        "value": 0.15600000321865082
+      }
+    },
+    "yPos": {
+      "min": 0,
+      "max": 1080,
+      "value": 0
+    },
+    "yPos-randomsequenced": {
+      "smoothed-onepole-frequency": {
+        "min": 0,
+        "max": 0.5,
+        "value": 0.00800000037997961
+      },
+      "seed": {
+        "min": 0,
+        "max": 200,
+        "value": 145
+      },
+      "length-normalized": {
+        "min": 0,
+        "max": 1,
+        "value": 1
+      },
+      "rate-normalized": {
+        "min": 0,
+        "max": 1,
+        "value": 0.20400001108646393
+      }
+    },
+    "numBalls": {
+      "min": 0,
+      "max": 250,
+      "value": 11
+    },
+    "xPos": {
+      "min": 0,
+      "max": 1920,
+      "value": 0
+    },
+    "radius": {
+      "min": 20,
+      "max": 500,
+      "value": 20
+    },
+    "radius-modulated-phasor-amount": {
+      "min": -1,
+      "max": 1,
+      "value": 0.5
+    }
+  }
+}
