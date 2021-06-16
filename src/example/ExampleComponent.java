@@ -30,17 +30,9 @@ public class ExampleComponent extends MainWindow
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
 		add(presetComponent, constraints);
-
-		addSlider(model.radius);
-		addSlider(model.radiusSmooth);
-		addSlider(model.yPos);
-		addSlider(model.numBalls);
-		addSlider(model.randomVariation);
-		
-		addRandomSequencedParameterComponent(model.xPosSequence);
-		addRandomSequencedParameterComponent(model.yPosSequence);
 	}
 	
+	@SuppressWarnings("unused")
 	private void addSlider(FloatParameter parameter)
 	{
 		constraints.gridx = 0;
@@ -52,6 +44,7 @@ public class ExampleComponent extends MainWindow
 		add(slider, constraints);
 	}
 	
+	@SuppressWarnings("unused")
 	private void addRandomSequencedParameterComponent(RandomSequencedParameter randomSequencedParameter)
 	{
 		constraints.gridx = 0;

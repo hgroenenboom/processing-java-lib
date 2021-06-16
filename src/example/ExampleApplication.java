@@ -4,18 +4,10 @@ import dsp.ProcessSettings;
 import main.MainApplication;
 import main.MainWindow;
 
-import parameters.FloatParameter;
-import parameters.decorators.OnePoleParameter;
-import parameters.decorators.RandomSequencedParameter;
-
 public class ExampleApplication extends MainApplication
 {
 	public ExampleApplication()
 	{
-		xPos = new FloatParameter("xPos", manager, 0.0f, 1920);
-		yPos = new FloatParameter("yPos", manager, 0.0f, 1080);
-		xPosSequence = new RandomSequencedParameter(xPos);
-		yPosSequence = new RandomSequencedParameter(yPos);
 	}
 
 	@Override
@@ -46,33 +38,9 @@ public class ExampleApplication extends MainApplication
 
 		final float halfWidth = width / 2.0f;
 		final float halfHeight = height / 2.0f;
-
-		final float _diameter = radiusSmooth.get();
-
-		final float randomVariationInPixels = 50.0f * randomVariation.get();
-
-		final float _xPos = xPosSequence.get();
-		final float _yPos = yPosSequence.get();
-
-		for (int i = 0; i < numBalls.get().intValue(); i++)
-		{
-			float randX = (2.0f * (float) Math.random() - 1.0f) * randomVariationInPixels;
-			float randY = (2.0f * (float) Math.random() - 1.0f) * randomVariationInPixels;
-
-			ellipse(_xPos + randX, _yPos + randY, _diameter, _diameter);
-		}
 	}
 	
 	final float FRAME_RATE = 60.0f;
 	
 	ProcessSettings settings = new ProcessSettings(FRAME_RATE);
-
-	public FloatParameter radius = new FloatParameter("radius", manager, 20.0f, 500.0f);
-	public OnePoleParameter<Float> radiusSmooth = new OnePoleParameter<Float>(settings, radius);
-
-	public FloatParameter xPos, yPos;
-	public RandomSequencedParameter xPosSequence, yPosSequence;
-
-	public FloatParameter randomVariation = new FloatParameter("randomVariation", manager, 0.0f, 1.0f);
-	public FloatParameter numBalls = new FloatParameter("numBalls", manager, 0.0f, 15.0f);
 }
