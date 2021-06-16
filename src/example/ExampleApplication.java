@@ -1,5 +1,6 @@
 package example;
 
+import dsp.ProcessSettings;
 import main.MainApplication;
 import main.MainWindow;
 
@@ -21,6 +22,14 @@ public class ExampleApplication extends MainApplication
 	public MainWindow createMainWindow()
 	{
 		return new ExampleComponent(this);
+	}
+	
+	@Override
+	public void setup()
+	{
+		frameRate(FRAME_RATE);
+		
+		createWindow();
 	}
 
 	@Override
@@ -53,9 +62,13 @@ public class ExampleApplication extends MainApplication
 			ellipse(_xPos + randX, _yPos + randY, _diameter, _diameter);
 		}
 	}
+	
+	final float FRAME_RATE = 60.0f;
+	
+	ProcessSettings settings = new ProcessSettings(FRAME_RATE);
 
 	public FloatParameter radius = new FloatParameter("radius", manager, 20.0f, 500.0f);
-	public OnePoleParameter<Float> radiusSmooth = new OnePoleParameter<Float>(radius);
+	public OnePoleParameter<Float> radiusSmooth = new OnePoleParameter<Float>(settings, radius);
 
 	public FloatParameter xPos, yPos;
 	public RandomSequencedParameter xPosSequence, yPosSequence;

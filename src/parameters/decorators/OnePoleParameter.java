@@ -2,20 +2,23 @@ package parameters.decorators;
 
 import java.util.Objects;
 
+import data.Listener;
 import dsp.OnePole;
+import dsp.ProcessSettings;
 import parameters.FloatParameter;
 import parameters.Parameter;
 
-public class OnePoleParameter<T extends Number> extends FloatParameter
+public class OnePoleParameter<T extends Number> extends FloatParameter implements Listener<ProcessSettings>
 {
-	public OnePoleParameter(Parameter<T> parameterToSmooth)
+	public OnePoleParameter(ProcessSettings settings, Parameter<T> parameterToSmooth)
 	{
 		super(Objects.requireNonNull(parameterToSmooth.id) + "-onepole",
-				Objects.requireNonNull(parameterToSmooth.manager), 0.0f, 0.5f);
+				Objects.requireNonNull(parameterToSmooth.manager), 0.0f, 1.0f);
 
 		this.parameterToSmooth = parameterToSmooth;
-
-		set(-1.0f + 1.0f / 20.0f);
+		
+		this.settings = Objects.requireNonNull(settings);
+		settings.addListener(this);
 	}
 
 	@Override
@@ -27,13 +30,26 @@ public class OnePoleParameter<T extends Number> extends FloatParameter
 	@Override
 	public void set(Float newValue)
 	{
+		// First set the internal FloatParameters parameter value
 		super.set(newValue);
+		
+		updateFilter();
+	}
 
-		final float clampedValue = super.get();
-		onePole.setLowpass(clampedValue);
+	@Override
+	public void valueChanged(ProcessSettings settings)
+	{
+		updateFilter();
+	}
+	
+	private void updateFilter()
+	{
+		onePole.setLowpass( 0.5f * super.get() );
 	}
 
 	public OnePole onePole = new OnePole(0.0f);
 
 	Parameter<T> parameterToSmooth;
+	
+	final ProcessSettings settings;
 }

@@ -8,6 +8,7 @@ public class FloatParameter extends Parameter<Float>
 	{
 		super(id, manager);
 
+		assert max > min : "FloatParameter maximum value should be larger then it's minimum";
 		this.min = min;
 		this.max = max;
 
@@ -56,6 +57,22 @@ public class FloatParameter extends Parameter<Float>
 		value = Math.min(max, Math.max(min, newValue));
 
 		updateListeners(value);
+	}
+	
+	public float normalized()
+	{
+		return (value - min) / range();
+	}
+	
+	public float normalized(float normalized)
+	{
+		set( min + range() * normalized );
+		return get();
+	}
+	
+	public float range()
+	{
+		return max - min;
 	}
 
 	public float getMin()

@@ -1,7 +1,14 @@
 package dsp;
 
-public class ProcessSettings
+import data.Broadcaster;
+
+public class ProcessSettings extends Broadcaster<ProcessSettings>
 {
+	public class Listener
+	{
+		
+	}
+	
 	public ProcessSettings(float initialSampleRate)
 	{
 		sampleRate(initialSampleRate);

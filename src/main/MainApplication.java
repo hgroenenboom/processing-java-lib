@@ -12,11 +12,11 @@ public abstract class MainApplication extends PApplet
 
 	public static void main(String args[])
 	{
+		// TODO: look for a way so that the name of the implementer class does not have to be hardcoded here
 		PApplet.main(new String[] { "--present", example.ExampleApplication.class.getName() });
 	}
 
-	@Override
-	public void setup()
+	public void createWindow()
 	{
 		mainComponent = createMainWindow();
 		if (mainComponent != null)
