@@ -15,6 +15,8 @@ public class RandomSequencedParameterComponent extends JPanel
 		
 		add(new FloatParameterSlider(parameter.onePoleParameter));
 		add(new FloatParameterSlider(parameter.rate));
+		add(new FloatParameterSlider(parameter.sequenceLength));
+		add(new IntParameterSlider(parameter.seed));
 	}
 	
 	@SuppressWarnings("unused")

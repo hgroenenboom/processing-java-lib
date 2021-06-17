@@ -1,17 +1,18 @@
 package parameters.decorators;
 
 import java.util.Objects;
-import java.util.Random;
-
 import data.RandomSequence;
 import dsp.OnePole;
 import parameters.FloatParameter;
+import parameters.IntParameter;
 import parameters.Parameter;
 import parameters.ParameterListener;
 import processing.data.JSONObject;
 
-public class RandomSequencedParameter extends Parameter<Float> implements ParameterListener<Float>
+@SuppressWarnings("rawtypes")
+public class RandomSequencedParameter extends Parameter<Float> implements ParameterListener
 {
+	@SuppressWarnings("unchecked")
 	public RandomSequencedParameter(FloatParameter parameter)
 	{
 		super(Objects.requireNonNull(parameter).id + "-randomsequenced", parameter.manager);
@@ -19,6 +20,14 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 		onePoleParameter = new FloatParameter(id + "-onepole", manager, 0.0f, 0.5f);
 		onePoleParameter.addListener(this);
 		onePoleParameter.set(1.0f / 5.0f);
+		
+		seed = new IntParameter(id + "-seed", manager, 0, 200);
+		seed.addListener(this);
+		seed.set(0);
+		
+		sequenceLength = new FloatParameter(id + "-length", manager, 0.0f, 1.0f);
+		sequenceLength.addListener(this);
+		sequenceLength.set(0.5f);
 		
 		rate = new FloatParameter(id + "-rate", manager, 0.0f, 1.0f);
 		
@@ -73,25 +82,43 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	}
 	
 	@Override
-	public void onValueChanged(Parameter<Float> source, Float newValue)
+	public void onValueChanged(Parameter source, Object newValue)
 	{
 		if(source == onePoleParameter)
 		{
-			// Update OnePole parameters if the Parameter has changed
-			onePole.setLowpass(newValue);
+			onePole.setLowpass(onePoleParameter.get());
+		}
+		else if(source == sequenceLength)
+		{
+			sequence.size( (int)(1.0f + sequenceLength.get() * ( maxLength - 1.00001f ) ) );
+		}
+		else if(source == seed)
+		{
+			final int activeSize = sequence != null ? sequence.size() : maxLength;
+			sequence = new RandomSequence(seed.get(), maxLength);
+			sequence.size(activeSize);
 		}
 	}
-
-	private OnePole onePole = new OnePole(0.0f);
-	public FloatParameter onePoleParameter;
 	
-	public FloatParameter rate;
+	// Constants se
+	public final int maxLength = 12;
 	
-	final int randomSequenceLength = 3;
-	public RandomSequence sequence = new RandomSequence(new Random().nextLong(), randomSequenceLength);
-
-	float out = 0.0f;
-	float counter = 0;
-
+	// Const reference to controlled parameter
 	public final FloatParameter child;
+
+	// Parmeters
+	public FloatParameter onePoleParameter;
+	public FloatParameter rate;
+	public FloatParameter sequenceLength;
+	public IntParameter seed;
+	
+	// The random sequence which is looped
+	private RandomSequence sequence; 
+
+	// State
+	private float out = 0.0f;
+	private float counter = 0;
+
+	// Output value onepole filter
+	private OnePole onePole = new OnePole(0.0f);
 }
