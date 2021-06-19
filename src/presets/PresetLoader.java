@@ -1,4 +1,4 @@
-package parameters;
+package presets;
 
 import java.io.File;
 import java.io.IOException;

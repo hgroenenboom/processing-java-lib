@@ -9,8 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import parameters.ParameterManager;
-import parameters.PresetLoader;
-import parameters.PresetSaver;
+import presets.PresetLoader;
+import presets.PresetSaver;
 import processing.data.JSONObject;
 
 public class PresetComponent extends JPanel implements ActionListener
