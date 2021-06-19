@@ -13,7 +13,7 @@ public class IntParameterSlider extends LabelSlider implements ParameterListener
 {
 	public IntParameterSlider(IntParameter parameter)
 	{
-		super(Objects.requireNonNull(parameter).id, parameter.getMin(), parameter.getMax());
+		super(Objects.requireNonNull(parameter).id, parameter.min(), parameter.max());
 		
 		m_parameter = parameter;
 		parameter.addListener(this);

@@ -1,34 +1,32 @@
 package parameters;
 
+import java.util.Objects;
+
 import processing.data.JSONObject;
 
-public class FloatParameter extends Parameter<Float>
+public class FloatParameter extends NumericParameter<Float>
 {
 	public FloatParameter(String id, ParameterManager manager, float min, float max)
 	{
-		super(id, manager);
+		super(Objects.requireNonNull(id), Objects.requireNonNull(manager), min, max);
 
-		assert max > min : "FloatParameter maximum value should be larger then it's minimum";
-		this.min = min;
-		this.max = max;
-
-		value = Math.min(max, Math.max(min, 0.0f));
+		value = Math.min(max(), Math.max(min(), 0.0f));
 	}
 
 	public void randomize()
 	{
-		set( min + (max - min) * (float) Math.random() );
+		set( min() + (max() - min()) * (float) Math.random() );
 	}
 
 	public void save(JSONObject json)
 	{
 		JSONObject child = new JSONObject();
 
-		child.setFloat("min", min);
-		child.setFloat("max", max);
+		child.setFloat("min", min());
+		child.setFloat("max", max());
 		child.setFloat("value", value);
 
-		json.setJSONObject(id, child);
+		Objects.requireNonNull(json).setJSONObject(id, child);
 	}
 
 	public void load(JSONObject json)
@@ -39,8 +37,8 @@ public class FloatParameter extends Parameter<Float>
 			return;
 		}
 
-		min = child.getFloat("min");
-		max = child.getFloat("max");
+		min( child.getFloat("min") );
+		max( child.getFloat("max") );
 
 		set( child.getFloat("value") );
 	}
@@ -54,39 +52,21 @@ public class FloatParameter extends Parameter<Float>
 	@Override
 	public void set(Float newValue)
 	{
-		value = Math.min(max, Math.max(min, newValue));
+		value = Math.min(max(), Math.max(min(), newValue));
 
 		updateListeners(value);
 	}
 	
 	public float normalized()
 	{
-		return (value - min) / range();
+		return ( value - min() ) / (float)range();
 	}
 	
 	public float normalized(float normalized)
 	{
-		set( min + range() * normalized );
+		set( min() + (float)range() * normalized );
 		return get();
 	}
-	
-	public float range()
-	{
-		return max - min;
-	}
-
-	public float getMin()
-	{
-		return min;
-	}
-
-	public float getMax()
-	{
-		return max;
-	}
-
-	private float min;
-	private float max;
 
 	private float value;
 }

@@ -66,7 +66,7 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 		
 		if(counter > period)
 		{
-			out = sequence.nextFloat(child.getMin(), child.getMax());
+			out = sequence.nextFloat(child.min(), child.max());
 			counter -= period;
 		}
 		counter += 1.0f;

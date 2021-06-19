@@ -2,29 +2,26 @@ package parameters;
 
 import processing.data.JSONObject;
 
-public class IntParameter extends Parameter<Integer>
+public class IntParameter extends NumericParameter<Integer>
 {
 	public IntParameter(String id, ParameterManager manager, int min, int max)
 	{
-		super(id, manager);
+		super(id, manager, min, max);
 
-		this.min = min;
-		this.max = max;
-
-		value = Math.min(max, Math.max(min, 0));
+		set(min());
 	}
 
 	public void randomize()
 	{
-		set( min + (int)((float)(max - min) * (float) Math.random()) );
+		set( min() + (int)( Math.random() * range() ) );
 	}
 
 	public void save(JSONObject json)
 	{
 		JSONObject child = new JSONObject();
 
-		child.setInt("min", min);
-		child.setInt("max", max);
+		child.setInt("min", min());
+		child.setInt("max", max());
 		child.setInt("value", value);
 
 		json.setJSONObject(id, child);
@@ -38,8 +35,8 @@ public class IntParameter extends Parameter<Integer>
 			return;
 		}
 
-		min = child.getInt("min");
-		max = child.getInt("max");
+		min( child.getInt("min") );
+		max( child.getInt("max") );
 
 		set( child.getInt("value") );
 	}
@@ -53,23 +50,10 @@ public class IntParameter extends Parameter<Integer>
 	@Override
 	public void set(Integer newValue)
 	{
-		value = Math.min(max, Math.max(min, newValue));
+		value = Math.min(max(), Math.max(min(), newValue));
 
 		updateListeners(value);
 	}
-
-	public Integer getMin()
-	{
-		return min;
-	}
-
-	public Integer getMax()
-	{
-		return max;
-	}
-
-	private int min;
-	private int max;
 
 	private int value;
 }
