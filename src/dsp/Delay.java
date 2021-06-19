@@ -14,7 +14,13 @@ public class Delay<T> implements Modulator<T>
 		delay = Math.min(size - 1, delay);
 		
 		memory.setSize(size);
+		
 		writePointer %= memory.size();
+	}
+	
+	public int size()
+	{
+		return memory.size();
 	}
 	
 	public void setDelay(int numSamples)
@@ -33,7 +39,9 @@ public class Delay<T> implements Modulator<T>
 	@Override
 	public T get()
 	{
-		return memory.elementAt(readPointer());
+		T element = memory.elementAt(readPointer());
+		assert element != null : "Make sure to keep the vector filled with valid objects after resizing!";
+		return element;
 	}	
 	
 	private int readPointer()
