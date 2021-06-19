@@ -24,7 +24,12 @@ public class OnePoleParameter<T extends Number> extends FloatParameter implement
 	@Override
 	public Float get()
 	{
-		return onePole.filter(parameterToSmooth.get().floatValue());
+		return output;
+	}
+	
+	public void tick()
+	{
+		output = onePole.filter(parameterToSmooth.get().floatValue());		
 	}
 
 	@Override
@@ -52,4 +57,6 @@ public class OnePoleParameter<T extends Number> extends FloatParameter implement
 	Parameter<T> parameterToSmooth;
 	
 	final ProcessSettings settings;
+	
+	private float output;
 }
