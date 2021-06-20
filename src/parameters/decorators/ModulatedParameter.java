@@ -9,17 +9,17 @@ import parameters.NumericParameter;
 // TODO: make this valid for Int parameters as well
 public class ModulatedParameter extends FloatParameter
 {
-	public ModulatedParameter(NumericParameter<Float> parameter, Modulator<Float> modulator, float min, float max)
+	public ModulatedParameter(NumericParameter<Float> parameter, Modulator<Float> modulator, String id, float min, float max)
 	{
-		super(Objects.requireNonNull(parameter).id + "-modulation", parameter.manager, min, max);
+		super(Objects.requireNonNull(parameter).id + "-modulated" + Objects.requireNonNull(id), parameter.manager, min, max);
 		
 		this.modulator = Objects.requireNonNull(modulator);
 		modulatedParameter = parameter;
 	}
 	
-	public ModulatedParameter(NumericParameter<Float> parameter, Modulator<Float> modulator)
+	public ModulatedParameter(NumericParameter<Float> parameter, Modulator<Float> modulator, String id)
 	{
-		super(Objects.requireNonNull(parameter).id + "-modulation", parameter.manager, -1.0f, 1.0f);
+		super(Objects.requireNonNull(parameter).id + "-modulated" + Objects.requireNonNull(id), parameter.manager, -1.0f, 1.0f);
 		
 		this.modulator = Objects.requireNonNull(modulator);
 		modulatedParameter = parameter;

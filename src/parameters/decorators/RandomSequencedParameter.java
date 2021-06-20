@@ -17,19 +17,19 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	{
 		super(Objects.requireNonNull(parameter).id + "-randomsequenced", parameter.manager);
 		
-		onePoleParameter = new FloatParameter(id + "-onepole", 0.0f, 0.5f);
+		onePoleParameter = new FloatParameter("smoothed-onepole-frequency", 0.0f, 0.5f);
 		onePoleParameter.addListener(this);
 		onePoleParameter.set(1.0f / 5.0f);
 		
-		seed = new IntParameter(id + "-seed", 0, 200);
+		seed = new IntParameter("seed", 0, 200);
 		seed.addListener(this);
 		seed.set(0);
 		
-		sequenceLength = new FloatParameter(id + "-length", 0.0f, 1.0f);
+		sequenceLength = new FloatParameter("length-normalized", 0.0f, 1.0f);
 		sequenceLength.addListener(this);
 		sequenceLength.set(0.5f);
 		
-		rate = new FloatParameter(id + "-rate", 0.0f, 1.0f);
+		rate = new FloatParameter("rate-normalized", 0.0f, 1.0f);
 		
 		child = parameter;
 	}

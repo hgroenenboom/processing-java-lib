@@ -12,7 +12,7 @@ public class OnePoleParameter<T extends Number> extends FloatParameter implement
 {
 	public OnePoleParameter(ProcessSettings settings, Parameter<T> parameterToSmooth)
 	{
-		super(Objects.requireNonNull(parameterToSmooth.id) + "-onepole",
+		super(Objects.requireNonNull(parameterToSmooth.id) + "-onepole-frequency",
 				Objects.requireNonNull(parameterToSmooth.manager), 0.0f, 1.0f);
 
 		this.parameterToSmooth = parameterToSmooth;
