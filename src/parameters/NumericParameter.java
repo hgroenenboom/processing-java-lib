@@ -11,6 +11,16 @@ public abstract class NumericParameter<T extends Number> extends Parameter<T>
 		
 		assertRange();
 	}
+	
+	public NumericParameter(String id, T min, T max)
+	{
+		super(id);
+
+		m_min = min;
+		m_max = max;
+		
+		assertRange();
+	}
 
 	public double range()
 	{

@@ -3,35 +3,26 @@ package parameters.decorators;
 import java.util.Objects;
 
 import dsp.Modulator;
+import parameters.FloatParameter;
 import parameters.NumericParameter;
-import parameters.Parameter;
-import processing.data.JSONObject;
 
 // TODO: make this valid for Int parameters as well
-public class ModulatedParameter extends Parameter<Float>
+public class ModulatedParameter extends FloatParameter
 {
-	public ModulatedParameter(NumericParameter<Float> parameter, Modulator<Float> modulator)
+	public ModulatedParameter(NumericParameter<Float> parameter, Modulator<Float> modulator, float min, float max)
 	{
-		super(Objects.requireNonNull(parameter).id + "-modulation", parameter.manager);
+		super(Objects.requireNonNull(parameter).id + "-modulation", parameter.manager, min, max);
 		
 		this.modulator = Objects.requireNonNull(modulator);
 		modulatedParameter = parameter;
 	}
-
-	@Override
-	public void randomize()
+	
+	public ModulatedParameter(NumericParameter<Float> parameter, Modulator<Float> modulator)
 	{
-		amount = -1.0f + 2.0f * (float) Math.random();
-	}
-
-	@Override
-	public void save(JSONObject json)
-	{		
-	}
-
-	@Override
-	public void load(JSONObject json)
-	{
+		super(Objects.requireNonNull(parameter).id + "-modulation", parameter.manager, -1.0f, 1.0f);
+		
+		this.modulator = Objects.requireNonNull(modulator);
+		modulatedParameter = parameter;
 	}
 
 	@Override
@@ -39,12 +30,6 @@ public class ModulatedParameter extends Parameter<Float>
 	{
 		// parameterValue + amount * modulation * parameterRange
 		return modulatedParameter.get().floatValue() + amount * modulator.get().floatValue() * (float)modulatedParameter.range();
-	}
-
-	@Override
-	public void set(Float newData)
-	{
-		amount = newData;
 	}
 	
 	private float amount = 0.0f;

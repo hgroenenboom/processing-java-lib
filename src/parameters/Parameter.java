@@ -14,6 +14,11 @@ public abstract class Parameter<T>
 
 		manager.add(this);
 	}
+	
+	public Parameter(String id)
+	{
+		this.id = Objects.requireNonNull(id);
+	}
 
 	public abstract void randomize();
 
@@ -44,7 +49,7 @@ public abstract class Parameter<T>
 	}
 
 	public final String id;
-	public ParameterManager manager;
+	public ParameterManager manager = null;
 
 	private HashSet<ParameterListener<T>> listeners = new HashSet<ParameterListener<T>>();
 }

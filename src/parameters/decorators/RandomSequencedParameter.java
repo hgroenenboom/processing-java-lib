@@ -17,19 +17,19 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	{
 		super(Objects.requireNonNull(parameter).id + "-randomsequenced", parameter.manager);
 		
-		onePoleParameter = new FloatParameter(id + "-onepole", manager, 0.0f, 0.5f);
+		onePoleParameter = new FloatParameter(id + "-onepole", 0.0f, 0.5f);
 		onePoleParameter.addListener(this);
 		onePoleParameter.set(1.0f / 5.0f);
 		
-		seed = new IntParameter(id + "-seed", manager, 0, 200);
+		seed = new IntParameter(id + "-seed", 0, 200);
 		seed.addListener(this);
 		seed.set(0);
 		
-		sequenceLength = new FloatParameter(id + "-length", manager, 0.0f, 1.0f);
+		sequenceLength = new FloatParameter(id + "-length", 0.0f, 1.0f);
 		sequenceLength.addListener(this);
 		sequenceLength.set(0.5f);
 		
-		rate = new FloatParameter(id + "-rate", manager, 0.0f, 1.0f);
+		rate = new FloatParameter(id + "-rate", 0.0f, 1.0f);
 		
 		child = parameter;
 	}
@@ -37,12 +37,21 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	@Override
 	public void randomize()
 	{
+		onePoleParameter.randomize();
+		seed.randomize();
+		sequenceLength.randomize();
+		rate.randomize();
 	}
 
 	@Override
 	public void save(JSONObject json)
 	{
 		JSONObject child = new JSONObject();
+		
+		onePoleParameter.save(child);
+		seed.save(child);
+		sequenceLength.save(child);
+		rate.save(child);
 		
 		json.setJSONObject(id, child);
 	}
@@ -55,6 +64,11 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 		{
 			return;
 		}
+		
+		onePoleParameter.load(child);
+		seed.load(child);
+		sequenceLength.load(child);
+		rate.load(child);
 	}
 
 	@Override
@@ -78,7 +92,6 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 	public void set(Float newData)
 	{
 		// Not sure what we want here
-		// out = newData;
 	}
 	
 	@Override
@@ -100,7 +113,7 @@ public class RandomSequencedParameter extends Parameter<Float> implements Parame
 		}
 	}
 	
-	// Constants se
+	// Constants settings
 	public final int maxLength = 12;
 	
 	// Const reference to controlled parameter

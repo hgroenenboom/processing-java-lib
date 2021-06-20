@@ -10,6 +10,13 @@ public class IntParameter extends NumericParameter<Integer>
 
 		set(min());
 	}
+	
+	public IntParameter(String id, int min, int max)
+	{
+		super(id, min, max);
+
+		set(min());
+	}
 
 	public void randomize()
 	{

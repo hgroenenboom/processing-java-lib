@@ -12,6 +12,13 @@ public class FloatParameter extends NumericParameter<Float>
 
 		value = Math.min(max(), Math.max(min(), 0.0f));
 	}
+	
+	public FloatParameter(String id, float min, float max)
+	{
+		super(Objects.requireNonNull(id), min, max);
+
+		value = Math.min(max(), Math.max(min(), 0.0f));
+	}
 
 	public void randomize()
 	{
