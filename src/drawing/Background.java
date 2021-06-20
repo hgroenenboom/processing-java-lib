@@ -14,7 +14,7 @@ public class Background
 			assert b >= 0.0f && b <= 1.0f : "b should be value between 0 and 1, with b=" + b;
 		}
 
-		context.fill(r, g, g, alpha);
+		context.fill(r, g, b, alpha);
 
 		context.rect(0, 0, context.width, context.height);
 	}

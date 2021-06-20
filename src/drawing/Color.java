@@ -163,6 +163,11 @@ public class Color
 		assert colorMode == ColorMode.RGB;
 		return values[2];
 	}
+	
+	public float alpha()
+	{
+		return values[3];
+	}
 
 	public void toHSL()
 	{
