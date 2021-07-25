@@ -104,7 +104,7 @@ public class Color
 
 		for (int i = 0; i < (useAlpha ? 4 : 3); i++)
 		{
-			values[i] = HMath.linearInterpolated(amount, other.values[i], values[i]);
+			values[i] = HMath.linearInterpolated(amount, values[i], other.values[i]);
 		}
 	}
 
@@ -251,6 +251,14 @@ public class Color
 	public ColorMode getColorMode()
 	{
 		return colorMode;
+	}
+	
+	public void randomize()
+	{
+		for(short i = 0; i < 4; i++)
+		{			
+			values[i] = (float)Math.random();
+		}
 	}
 
 	public void print(final String identifier)
