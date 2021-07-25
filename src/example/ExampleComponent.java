@@ -30,6 +30,12 @@ public class ExampleComponent extends MainWindow
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
 		add(presetComponent, constraints);
+		
+		addSlider(model.speed);
+		addSlider(model.change);
+		addSlider(model.radius);
+		addSlider(model.dist);
+		addSlider(model.tilt);
 	}
 	
 	@SuppressWarnings("unused")

@@ -1,0 +1,45 @@
+{
+  "presetName": "puddles",
+  "parameters": {
+    "droplet-speed": {
+      "min": 0,
+      "max": 2,
+      "value": 0.11800000816583633
+    },
+    "droplet-chance": {
+      "min": 0,
+      "max": 2,
+      "value": 0.9460000395774841
+    },
+    "tilt-onepole-frequency": {
+      "min": 0,
+      "max": 1,
+      "value": 0.0020000000949949026
+    },
+    "droplet-radius": {
+      "min": 0,
+      "max": 1,
+      "value": 0.1720000058412552
+    },
+    "dist": {
+      "min": 0,
+      "max": 1,
+      "value": 0.6450000405311584
+    },
+    "dist-onepole-frequency": {
+      "min": 0,
+      "max": 1,
+      "value": 0.0020000000949949026
+    },
+    "droplet-radius-onepole-frequency": {
+      "min": 0,
+      "max": 1,
+      "value": 0.0020000000949949026
+    },
+    "tilt": {
+      "min": 1,
+      "max": 4,
+      "value": 2.1450002193450928
+    }
+  }
+}
