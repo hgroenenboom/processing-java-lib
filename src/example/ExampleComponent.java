@@ -5,10 +5,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import components.FloatParameterSlider;
+import components.IntParameterSlider;
 import components.PresetComponent;
 import components.RandomSequencedParameterComponent;
 import main.MainWindow;
 import parameters.FloatParameter;
+import parameters.IntParameter;
 import parameters.decorators.RandomSequencedParameter;
 
 @SuppressWarnings("serial")
@@ -30,6 +32,25 @@ public class ExampleComponent extends MainWindow
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
 		add(presetComponent, constraints);
+		
+		addSlider(model.branchAngleOffset);
+		addSlider(model.branchingChance);
+		
+		addSlider(model.branchMovement);
+		addSlider(model.widthExpansion);
+		addSlider(model.widthMultiplier);
+		
+		addSlider(model.branchCount);
+		addSlider(model.branchCountReduction);
+		addSlider(model.randomListSeed);
+		
+		addSlider(model.initSpeed);
+		addSlider(model.minSpeed);
+		addSlider(model.speedMultiplier);
+		addSlider(model.speedIncrement);
+		addSlider(model.speedRandomDeviation);
+
+		addSlider(model.alpha);
 	}
 	
 	@SuppressWarnings("unused")
@@ -41,6 +62,18 @@ public class ExampleComponent extends MainWindow
 		constraints.gridy += 2;
 		
 		FloatParameterSlider slider = new FloatParameterSlider(parameter);
+		add(slider, constraints);
+	}
+	
+	@SuppressWarnings("unused")
+	private void addSlider(IntParameter parameter)
+	{
+		constraints.gridx = 0;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 2;
+		constraints.gridy += 2;
+		
+		IntParameterSlider slider = new IntParameterSlider(parameter);
 		add(slider, constraints);
 	}
 	

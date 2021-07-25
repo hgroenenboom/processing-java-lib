@@ -1,0 +1,75 @@
+{
+  "presetName": "pudding-2",
+  "parameters": {
+    "Width multiplier": {
+      "min": 0,
+      "max": 2,
+      "value": 0.8600000143051147
+    },
+    "Initial speed": {
+      "min": 0,
+      "max": 10,
+      "value": 10
+    },
+    "Branch angle offset": {
+      "min": 0,
+      "max": 2,
+      "value": 0.796000063419342
+    },
+    "Branch count reduction": {
+      "min": 0,
+      "max": 3,
+      "value": 0
+    },
+    "Speed multiplier": {
+      "min": 0,
+      "max": 2,
+      "value": 0.8820000290870667
+    },
+    "Speed increment": {
+      "min": -0.5,
+      "max": 0.5,
+      "value": 0.2600000202655792
+    },
+    "Branch count": {
+      "min": 0,
+      "max": 10,
+      "value": 4
+    },
+    "Branching chance": {
+      "min": 0,
+      "max": 1,
+      "value": 0.03800000250339508
+    },
+    "Random sequence seed": {
+      "min": 0,
+      "max": 200,
+      "value": 100
+    },
+    "Minimum speed": {
+      "min": 0,
+      "max": 0.20000000298023224,
+      "value": 0.05700000375509262
+    },
+    "Alpha": {
+      "min": 0,
+      "max": 255,
+      "value": 72.66100311279297
+    },
+    "Width expansion": {
+      "min": 0.5,
+      "max": 1.5,
+      "value": 1.4450000524520874
+    },
+    "Speed random deviation": {
+      "min": 0,
+      "max": 0.20000000298023224,
+      "value": 0.03100000135600567
+    },
+    "Branch movement": {
+      "min": 0,
+      "max": 1,
+      "value": 0.2110000103712082
+    }
+  }
+}

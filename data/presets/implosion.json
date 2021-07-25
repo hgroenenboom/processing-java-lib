@@ -1,0 +1,75 @@
+{
+  "presetName": "implosion",
+  "parameters": {
+    "Width multiplier": {
+      "min": 0,
+      "max": 2,
+      "value": 1.3730000257492065
+    },
+    "Initial speed": {
+      "min": 0,
+      "max": 10,
+      "value": 4.206000328063965
+    },
+    "Branch angle offset": {
+      "min": 0,
+      "max": 2,
+      "value": 1.0329999923706055
+    },
+    "Branch count reduction": {
+      "min": 0,
+      "max": 3,
+      "value": 1
+    },
+    "Speed multiplier": {
+      "min": 0,
+      "max": 2,
+      "value": 0.9350000619888306
+    },
+    "Speed increment": {
+      "min": -0.5,
+      "max": 0.5,
+      "value": -0.0430000014603138
+    },
+    "Branch count": {
+      "min": 0,
+      "max": 10,
+      "value": 6
+    },
+    "Branching chance": {
+      "min": 0,
+      "max": 1,
+      "value": 0.17000000178813934
+    },
+    "Random sequence seed": {
+      "min": 0,
+      "max": 200,
+      "value": 150
+    },
+    "Minimum speed": {
+      "min": 0,
+      "max": 0.20000000298023224,
+      "value": 0.0820000022649765
+    },
+    "Alpha": {
+      "min": 0,
+      "max": 255,
+      "value": 69.91900634765625
+    },
+    "Width expansion": {
+      "min": 0.5,
+      "max": 1.5,
+      "value": 1.069000005722046
+    },
+    "Speed random deviation": {
+      "min": 0,
+      "max": 0.20000000298023224,
+      "value": 0.13500000536441803
+    },
+    "Branch movement": {
+      "min": 0,
+      "max": 1,
+      "value": 0.25200000405311584
+    }
+  }
+}
