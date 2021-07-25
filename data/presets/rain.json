@@ -1,0 +1,45 @@
+{
+  "presetName": "rain",
+  "parameters": {
+    "droplet-speed": {
+      "min": 0,
+      "max": 2,
+      "value": 1.4190000295639038
+    },
+    "droplet-chance": {
+      "min": 0,
+      "max": 2,
+      "value": 1.0220000743865967
+    },
+    "tilt-onepole-frequency": {
+      "min": 0,
+      "max": 1,
+      "value": 0.0002
+    },
+    "droplet-radius": {
+      "min": 0,
+      "max": 1,
+      "value": 0.18800000846385956
+    },
+    "dist": {
+      "min": 0,
+      "max": 1,
+      "value": 0.8060000538825989
+    },
+    "dist-onepole-frequency": {
+      "min": 0,
+      "max": 1,
+      "value": 0.0002
+    },
+    "droplet-radius-onepole-frequency": {
+      "min": 0,
+      "max": 1,
+      "value": 0.0002
+    },
+    "tilt": {
+      "min": 1,
+      "max": 4,
+      "value": 1.5000001192092896
+    }
+  }
+}
