@@ -1,4 +1,6 @@
-# http://tutorials.jenkov.com/java/java-project-overview-compilation-and-execution.html
+# Understanding compilation:  http://tutorials.jenkov.com/java/java-project-overview-compilation-and-execution.html
+# Understanding class-path: https://docs.oracle.com/javase/7/docs/technotes/tools/windows/classpath.html
+
 cd "$PSScriptRoot"
 
 $javaFiles = $(Get-ChildItem -Recurse -Filter '*.java')
