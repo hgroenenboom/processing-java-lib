@@ -21,3 +21,8 @@ A Java library for processing visuals.
 ![image](/media/ball/1.gif)
 ![image](/media/ball/2.gif)
 ![image](/media/ball/3.gif)
+
+### Raindrops
+
+![image](/media/raindrops/1.gif)
+![image](/media/raindrops/2.gif)
