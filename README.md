@@ -1,4 +1,4 @@
-# processing-java-lib
+# Processing Java library
 
 A Java library for processing visuals.
 
