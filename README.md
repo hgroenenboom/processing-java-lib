@@ -13,3 +13,8 @@ A Java library for processing visuals.
 ![image](/media/tree/7.gif)
 ![image](/media/tree/8.gif)
 ![image](/media/tree/9.gif)
+
+### Moving-Tree
+
+![image](/media/moving-tree/1.gif)
+![image](/media/moving-tree/2.gif)
